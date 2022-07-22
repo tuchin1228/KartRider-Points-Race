@@ -5,12 +5,12 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>計分者模式</title>
 </head>
 
 <body>
 
-
+    <h1>計分者模式</h1>
     <div id="app">
         <div><button type="button" @click="clean">全部清除</button></div>
         <p>設定分數</p>
@@ -58,7 +58,7 @@
                             style="width:85px; margin:0 5px;font-size: 20px;" /></td>
                     <td></td>
                 </tr>
-                <tr v-for="(arr,idx) in game" :key="idx">
+                <tr v-for="(arr,idx) in game.list" :key="idx">
                     <td>第{{idx+1}}場</td>
                     <td v-for="item in arr" :key="item.id">
                         <select name="" id="" v-model="item.score" style="width:93px; margin:0 5px;font-size: 20px;">
@@ -142,7 +142,7 @@
                     },
                 ])
                 let playerArray = reactive([])
-                let game = reactive([])
+                let game = reactive({list:[]})
                 //新增場次
                 const AddGame = () => {
                     let tempArray = []
@@ -153,7 +153,7 @@
                             score: ''
                         })
                     }
-                    game.push(tempArray)
+                    game.list.push(tempArray)
                 }
 
                 //計算總分
@@ -161,8 +161,8 @@
                     let TotalScoreArray = []
                     for (let j = 0; j < 8; j++) {
                         let total = 0
-                        for (let i = 0; i < game.length; i++) {
-                            let score = scoreArray.filter(sc => sc.title == game[i][j].score)
+                        for (let i = 0; i < game.list.length; i++) {
+                            let score = scoreArray.filter(sc => sc.title == game.list[i][j].score)
                             total = total + (score && score.length > 0 ? Number(score[0].score) : 0);
                         }
                         TotalScoreArray[j] = {
@@ -184,7 +184,7 @@
 
                 //移除場次
                 const removeGame = (idx) => {
-                    game.splice(idx, 1)
+                    game.list.splice(idx, 1)
                 }
 
                 //儲存
@@ -198,7 +198,7 @@
                 //清除
                 const clean = () => {
                     Object.assign(playerArray, ['', '', '', '', '', '', '', ''])
-                    game.map(item => game.pop())
+                    game.list.map(item => game.list.pop())
                     scoreArray.map(item => item.score = '')
                     localStorage.removeItem('scoreArray')
                     localStorage.removeItem('playerArray')
