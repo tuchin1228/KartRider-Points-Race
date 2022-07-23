@@ -198,7 +198,8 @@
                 //清除
                 const clean = () => {
                     Object.assign(playerArray, ['', '', '', '', '', '', '', ''])
-                    game.list.map(item => game.list.pop())
+                    // game.list.map(item => game.list.pop())
+                    Object.assign(game,{list:[]})
                     scoreArray.map(item => item.score = '')
                     localStorage.removeItem('scoreArray')
                     localStorage.removeItem('playerArray')
