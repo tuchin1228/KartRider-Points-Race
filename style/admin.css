@@ -1,0 +1,187 @@
+body {
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+#app {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  background: rgb(255, 209, 58);
+  margin: 0;
+  padding: 10px 0;
+}
+
+h2 {
+  text-align: center;
+  font-size: 1.8rem;
+  background: rgb(205, 228, 255);
+  padding: 5px 0;
+  margin: 0;
+}
+
+.clear button {
+  margin: 0;
+  padding: 5px 0;
+  font-size: 1.6rem;
+  width: 100%;
+  border: none;
+  background: rgb(90, 90, 90);
+  color: white;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.clear button:hover {
+  background: rgb(112, 112, 112);
+}
+
+.scoreSetting {
+  padding: 10px;
+  background: rgb(205, 228, 255);
+  display: flex;
+  justify-content: space-between;
+}
+.scoreSetting > div {
+  width: 11%;
+}
+.scoreSetting h3 {
+  text-align: center;
+  margin: 0;
+}
+.scoreSetting input {
+  font-size: 20px;
+  text-align: center;
+  padding: 8px 0;
+  width: -webkit-fill-available;
+}
+
+main.scoreContent .title {
+  padding: 10px;
+  background: rgb(205, 255, 236);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+main.scoreContent .title > div {
+  width: 11%;
+}
+main.scoreContent .title h3 {
+  text-align: center;
+  margin: 0;
+}
+main.scoreContent .title input {
+  font-size: 20px;
+  text-align: center;
+  padding: 8px 0;
+  width: -webkit-fill-available;
+}
+main.scoreContent .content {
+  padding: 10px;
+  background: rgb(205, 255, 236);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid rgb(190, 236, 219);
+}
+main.scoreContent .content > div {
+  width: 11%;
+}
+main.scoreContent .content h3 {
+  text-align: center;
+  margin: 0;
+}
+main.scoreContent .content select {
+  font-size: 20px;
+  text-align: center;
+  padding: 8px 0;
+  width: -webkit-fill-available;
+}
+main.scoreContent .content button {
+  display: block;
+  margin: 0 auto;
+  border-radius: 2px;
+  padding: 2px 5px;
+  background: rgb(102, 102, 102);
+  border: none;
+  color: white;
+  font-weight: bold;
+  transition: 0.3s;
+  font-size: 1rem;
+}
+main.scoreContent .content button:hover {
+  background: rgb(128, 128, 128);
+}
+main.scoreContent .total {
+  padding: 10px;
+  background: rgb(255, 222, 222);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid rgb(235, 201, 201);
+}
+main.scoreContent .total > div {
+  width: 11%;
+}
+main.scoreContent .total h3 {
+  text-align: center;
+  margin: 0;
+}
+main.scoreContent .rank {
+  padding: 10px;
+  background: rgb(255, 222, 222);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+main.scoreContent .rank > div {
+  width: 11%;
+}
+main.scoreContent .rank h3 {
+  text-align: center;
+  margin: 0;
+}
+main.scoreContent .addGame button {
+  margin: 0;
+  padding: 5px 0;
+  font-size: 1.6rem;
+  width: 100%;
+  border: none;
+  background: rgb(17, 129, 36);
+  color: white;
+  font-weight: bold;
+  transition: 0.3s;
+}
+main.scoreContent .addGame button:hover {
+  background: rgb(26, 155, 47);
+}
+main.scoreContent .update button {
+  margin: 0;
+  padding: 5px 0;
+  font-size: 1.6rem;
+  width: 100%;
+  border: none;
+  background: rgb(255, 55, 55);
+  color: white;
+  font-weight: bold;
+  transition: 0.3s;
+}
+main.scoreContent .update button:hover {
+  background: rgb(255, 107, 107);
+}
+
+.disc {
+  padding: 10px;
+  background: rgb(255, 253, 224);
+}
+.disc h3 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+.disc ul li {
+  margin: 5px 0;
+  font-size: 1.2rem;
+}/*# sourceMappingURL=admin.css.map */

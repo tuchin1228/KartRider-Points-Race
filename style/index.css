@@ -1,0 +1,107 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+
+#app {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+h1 {
+  text-align: center;
+  background: rgb(255, 209, 58);
+  margin: 0;
+  padding: 10px 0;
+}
+
+.scoreSetting {
+  padding: 10px;
+  background: rgb(205, 228, 255);
+  display: flex;
+  justify-content: space-between;
+}
+.scoreSetting > div {
+  width: 11%;
+}
+.scoreSetting h3 {
+  text-align: center;
+  margin: 0;
+}
+.scoreSetting input {
+  font-size: 20px;
+  text-align: center;
+  padding: 8px 0;
+  width: -webkit-fill-available;
+}
+
+main.scoreContent .title {
+  padding: 10px;
+  background: rgb(205, 255, 236);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+main.scoreContent .title > div {
+  width: 11%;
+}
+main.scoreContent .title h3 {
+  text-align: center;
+  margin: 0;
+}
+main.scoreContent .title input {
+  font-size: 20px;
+  text-align: center;
+  padding: 8px 0;
+  width: -webkit-fill-available;
+}
+main.scoreContent .content {
+  padding: 10px;
+  background: rgb(205, 255, 236);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid rgb(190, 236, 219);
+}
+main.scoreContent .content > div {
+  width: 11%;
+}
+main.scoreContent .content h3 {
+  text-align: center;
+  margin: 0;
+}
+main.scoreContent .content select {
+  font-size: 20px;
+  text-align: center;
+  padding: 8px 0;
+  width: -webkit-fill-available;
+}
+main.scoreContent .total {
+  padding: 10px;
+  background: rgb(255, 222, 222);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 2px solid rgb(235, 201, 201);
+}
+main.scoreContent .total > div {
+  width: 11%;
+}
+main.scoreContent .total h3 {
+  text-align: center;
+  margin: 0;
+}
+main.scoreContent .rank {
+  padding: 10px;
+  background: rgb(255, 222, 222);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+main.scoreContent .rank > div {
+  width: 11%;
+}
+main.scoreContent .rank h3 {
+  text-align: center;
+  margin: 0;
+}/*# sourceMappingURL=index.css.map */

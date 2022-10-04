@@ -5,38 +5,91 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>參賽者模式</title>
+    <title>PTT搶分賽計分板</title>
+    <link rel="stylesheet" href="./index.css">
 </head>
 
 <body>
 
-    <h1>參賽者模式</h1>
     <div id="app">
+        
+        <h1>參賽者計分板</h1> 
         <!-- <div><button type="button" @click="clean">全部清除</button></div> -->
         <!-- <p>設定分數</p> -->
-        <div style="display: flex;">
-            <div><label for="">第一名</label><input type="number" v-model="scoreArray[0].score" disabled
-                    style="width:85px; margin:0 5px;font-size: 20px;"></div>
-            <div><label for="">第二名</label><input type="number" v-model="scoreArray[1].score" disabled
-                    style="width:85px; margin:0 5px;font-size: 20px;"></div>
-            <div><label for="">第三名</label><input type="number" v-model="scoreArray[2].score" disabled
-                    style="width:85px; margin:0 5px;font-size: 20px;"></div>
-            <div><label for="">第四名</label><input type="number" v-model="scoreArray[3].score" disabled
-                    style="width:85px; margin:0 5px;font-size: 20px;"></div>
-            <div><label for="">第五名</label><input type="number" v-model="scoreArray[4].score" disabled
-                    style="width:85px; margin:0 5px;font-size: 20px;"></div>
-            <div><label for="">第六名</label><input type="number" v-model="scoreArray[5].score" disabled
-                    style="width:85px; margin:0 5px;font-size: 20px;"></div>
-            <div><label for="">第七名</label><input type="number" v-model="scoreArray[6].score" disabled
-                    style="width:85px; margin:0 5px;font-size: 20px;"></div>
-            <div><label for="">第八名</label><input type="number" v-model="scoreArray[7].score" disabled
-                    style="width:85px; margin:0 5px;font-size: 20px;"></div>
-            <div><label for="">沒　到</label><input type="number" v-model="scoreArray[8].score" disabled
-                    style="width:85px; margin:0 5px;font-size: 20px;"></div>
+        <div class="scoreSetting">
+            <div>
+                <h3 for="">第一名</h3><input type="number" v-model="scoreArray[0].score" disabled>
+            </div>
+            <div>
+                <h3 for="">第二名</h3><input type="number" v-model="scoreArray[1].score" disabled>
+            </div>
+            <div>
+                <h3 for="">第三名</h3><input type="number" v-model="scoreArray[2].score" disabled>
+            </div>
+            <div>
+                <h3 for="">第四名</h3><input type="number" v-model="scoreArray[3].score" disabled>
+            </div>
+            <div>
+                <h3 for="">第五名</h3><input type="number" v-model="scoreArray[4].score" disabled>
+            </div>
+            <div>
+                <h3 for="">第六名</h3><input type="number" v-model="scoreArray[5].score" disabled>
+            </div>
+            <div>
+                <h3 for="">第七名</h3><input type="number" v-model="scoreArray[6].score" disabled>
+            </div>
+            <div>
+                <h3 for="">第八名</h3><input type="number" v-model="scoreArray[7].score" disabled>
+            </div>
+            <div>
+                <h3 for="">沒　到</h3><input type="number" v-model="scoreArray[8].score" disabled>
+            </div>
         </div>
-
-        <main style="margin: 30px 0;">
-            <!-- <button type="button" @click="AddGame" style="margin: 20px 0;">新增場次</button> -->
+         <main class="scoreContent">
+            <div class="title">
+                <div>
+                    <h3>參賽人員</h3>
+                </div>
+                <div><input type="text" v-model="playerArray[0]" placeholder="玩家1" disabled></div>
+                <div><input type="text" v-model="playerArray[1]" placeholder="玩家2" disabled></div>
+                <div><input type="text" v-model="playerArray[2]" placeholder="玩家3" disabled></div>
+                <div><input type="text" v-model="playerArray[3]" placeholder="玩家4" disabled></div>
+                <div><input type="text" v-model="playerArray[4]" placeholder="玩家5" disabled></div>
+                <div><input type="text" v-model="playerArray[5]" placeholder="玩家6" disabled></div>
+                <div><input type="text" v-model="playerArray[6]" placeholder="玩家7" disabled></div>
+                <div><input type="text" v-model="playerArray[7]" placeholder="玩家8" disabled></div>
+            </div>
+           <div class="content" v-for="(arr,idx) in game.list" :key="idx">
+                <div>
+                    <h3>第{{idx+1}}場</h3>
+                </div>
+                <div  v-for="item in arr" :key="item.id">
+                    <select name="" id="" v-model="item.score"
+                        disabled>
+                        <option :value="score.title" v-for="score in scoreArray" :key="score.title">{{score.title}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="total">
+                <div>
+                    <h3>總分</h3>
+                </div>
+                <div v-for="(score,idx) in TotalScore" :key="score.uid">
+                    <h3>{{score.score}}</h3>
+                </div>
+            </div>
+            <div class="rank">
+                <div>
+                    <h3>排名</h3>
+                </div>
+                <div v-for="(score,idx) in TotalScore" :key="score.uid">
+                    <h3>第 {{GetRanking(score.score)}} 名</h3>
+                </div>
+            </div>
+        </main> 
+        <!-- <main style="margin: 30px 0;">
+            <button type="button" @click="AddGame" style="margin: 20px 0;">新增場次</button>
             <table>
                 <tr>
                     <td>參賽人員</td>
@@ -68,21 +121,21 @@
                         </select>
                     </td>
                     <td>
-                        <!-- <button type="button" @click="removeGame(idx)">移除場次</button> -->
+                        <button type="button" @click="removeGame(idx)">移除場次</button>
                     </td>
                 </tr>
                 <tr>
                     <td>總分/名次</td>
-                    <!-- {{TotalScore}} -->
+                    {{TotalScore}}
                     <td v-for="(score,idx) in TotalScore" :key="score.uid" style="text-align: center;">
                         <p>{{score.score}} / 第{{GetRanking(score.score)}}名</p>
                     </td>
                     <td></td>
                 </tr>
             </table>
-            <!-- <button type="button" style="font-size: 40px;" @click="SaveGame">存檔</button> -->
+            <button type="button" style="font-size: 40px;" @click="SaveGame">存檔</button>
 
-        </main>
+        </main> -->
     </div>
 
 
@@ -143,7 +196,9 @@
                     },
                 ])
                 let playerArray = reactive([])
-                let game = reactive({list:[]})
+                let game = reactive({
+                    list: []
+                })
                 //新增場次
                 const AddGame = () => {
                     let tempArray = []
@@ -231,9 +286,9 @@
                         if (res.data) {
                             let data = JSON.parse(res.data);
                             console.log(data);
-                            scoreArray = Object.assign(scoreArray,data.scoreArray)
-                            playerArray = Object.assign(playerArray,data.playerArray)
-                            game = Object.assign(game,data.game)
+                            scoreArray = Object.assign(scoreArray, data.scoreArray)
+                            playerArray = Object.assign(playerArray, data.playerArray)
+                            game = Object.assign(game, data.game)
                             SaveGame()
                         }
                     });

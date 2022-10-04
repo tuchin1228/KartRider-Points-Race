@@ -6,38 +6,75 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>計分者模式</title>
+    <link rel="stylesheet" href="./admin.css">
 </head>
 
 <body>
 
-    <h1>計分者模式</h1>
     <div id="app">
-        <div><button type="button" @click="clean">全部清除</button></div>
-        <p>設定分數</p>
-        <div style="display: flex;">
-            <div><label for="">第一名</label><input type="number" v-model="scoreArray[0].score"
-                    style="width:85px; margin:0 5px;font-size: 20px;"></div>
-            <div><label for="">第二名</label><input type="number" v-model="scoreArray[1].score"
-                    style="width:85px; margin:0 5px;font-size: 20px;"></div>
-            <div><label for="">第三名</label><input type="number" v-model="scoreArray[2].score"
-                    style="width:85px; margin:0 5px;font-size: 20px;"></div>
-            <div><label for="">第四名</label><input type="number" v-model="scoreArray[3].score"
-                    style="width:85px; margin:0 5px;font-size: 20px;"></div>
-            <div><label for="">第五名</label><input type="number" v-model="scoreArray[4].score"
-                    style="width:85px; margin:0 5px;font-size: 20px;"></div>
-            <div><label for="">第六名</label><input type="number" v-model="scoreArray[5].score"
-                    style="width:85px; margin:0 5px;font-size: 20px;"></div>
-            <div><label for="">第七名</label><input type="number" v-model="scoreArray[6].score"
-                    style="width:85px; margin:0 5px;font-size: 20px;"></div>
-            <div><label for="">第八名</label><input type="number" v-model="scoreArray[7].score"
-                    style="width:85px; margin:0 5px;font-size: 20px;"></div>
-            <div><label for="">沒　到</label><input type="number" v-model="scoreArray[8].score"
-                    style="width:85px; margin:0 5px;font-size: 20px;"></div>
+        
+        <h1>計分者模式</h1>
+        <div class="clear"><button type="button" @click="clean">全部清除</button></div>
+        <h2>設定分數</h2>
+        <div class="scoreSetting">
+            <div><h3 for="">第一名</h3><input type="number" v-model="scoreArray[0].score"></div>
+            <div><h3 for="">第二名</h3><input type="number" v-model="scoreArray[1].score"></div>
+            <div><h3 for="">第三名</h3><input type="number" v-model="scoreArray[2].score"></div>
+            <div><h3 for="">第四名</h3><input type="number" v-model="scoreArray[3].score"></div>
+            <div><h3 for="">第五名</h3><input type="number" v-model="scoreArray[4].score"></div>
+            <div><h3 for="">第六名</h3><input type="number" v-model="scoreArray[5].score"></div>
+            <div><h3 for="">第七名</h3><input type="number" v-model="scoreArray[6].score"></div>
+            <div><h3 for="">第八名</h3><input type="number" v-model="scoreArray[7].score"></div>
+            <div><h3 for="">沒　到</h3><input type="number" v-model="scoreArray[8].score"></div>
         </div>
 
-        <main style="margin: 30px 0;">
-            <button type="button" @click="AddGame" style="margin: 20px 0;">新增場次</button>
-            <table>
+        <main  class="scoreContent">
+            <div class="title">
+                <div>
+                    <h3>參賽人員</h3>
+                </div>
+                <div><input type="text" v-model="playerArray[0]" placeholder="玩家1" ></div>
+                <div><input type="text" v-model="playerArray[1]" placeholder="玩家2" ></div>
+                <div><input type="text" v-model="playerArray[2]" placeholder="玩家3" ></div>
+                <div><input type="text" v-model="playerArray[3]" placeholder="玩家4" ></div>
+                <div><input type="text" v-model="playerArray[4]" placeholder="玩家5" ></div>
+                <div><input type="text" v-model="playerArray[5]" placeholder="玩家6" ></div>
+                <div><input type="text" v-model="playerArray[6]" placeholder="玩家7" ></div>
+                <div><input type="text" v-model="playerArray[7]" placeholder="玩家8" ></div>
+            </div>
+            <div class="content" v-for="(arr,idx) in game.list" :key="idx">
+                <div>
+                    <h3>第{{idx+1}}場</h3>
+                    <button type="button" @click="removeGame(idx)">移除</button>
+                </div>
+                <div  v-for="item in arr" :key="item.id">
+                    <select name="" id="" v-model="item.score">
+                        <option :value="score.title" v-for="score in scoreArray" :key="score.title">{{score.title}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="addGame">
+                <button type="button" @click="AddGame" >新增場次</button>
+            </div>
+            <div class="total">
+                <div>
+                    <h3>總分</h3>
+                </div>
+                <div v-for="(score,idx) in TotalScore" :key="score.uid">
+                    <h3>{{score.score}}</h3>
+                </div>
+            </div>
+            <div class="rank">
+                <div>
+                    <h3>排名</h3>
+                </div>
+                <div v-for="(score,idx) in TotalScore" :key="score.uid">
+                    <h3>第 {{GetRanking(score.score)}} 名</h3>
+                </div>
+            </div>
+
+            <!-- <table>
                 <tr>
                     <td>參賽人員</td>
                     <td><input type="text" v-model="playerArray[0]" placeholder="玩家1"
@@ -70,22 +107,28 @@
                 </tr>
                 <tr>
                     <td>總分/名次</td>
-                    <!-- {{TotalScore}} -->
+                    {{TotalScore}}
                     <td v-for="(score,idx) in TotalScore" :key="score.uid" style="text-align: center;">
                         <p>{{score.score}} / 第{{GetRanking(score.score)}}名</p>
                     </td>
                     <td></td>
                 </tr>
-            </table>
+            </table> -->
             <!-- <button type="button" style="font-size: 40px;" @click="SaveGame">存檔</button> -->
-            <button type="button" style="font-size: 40px;" @click="sendSocket">更新</button>
-
-            <ul>
-                <li>先設定分數、參賽者</li>
-                <li>新增場次，選擇名次</li>
-                <li>有更改任何輸入框的資料都須按更新才會儲存並更新到其他人的視窗</li>
-                <li>可以一次輸入完資料再按更新，不用改一個按一次</li>
-            </ul>
+            <div class="update">
+                <button type="button" @click="sendSocket">更新</button>
+            </div>
+            <div class="disc">
+                <h3>使用說明</h3>
+                <ul>
+                    <li>先輸入分數、參賽者，按更新</li>
+                    <li>新增場次，分配參賽者名次，按更新</li>
+                    <li>有更改任何輸入框的資料都須按更新才會儲存並更新到其他人的視窗</li>
+                    <li>可以一次輸入完資料再按更新，不用改一個按一次</li>
+                    <li>不小心按錯直接重整，回到上一步，按到全部清除或更新後就沒救了</li>
+                </ul>
+            </div>
+            
 
         </main>
     </div>
